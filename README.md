@@ -1,6 +1,11 @@
-# FHDW Paderborn Thesis LaTeX Template
+# FHDW Mettmann LaTeX Template
 
-The official LaTeX template for seminar papers, Bachelor and Master theses at FHDW Padeborn.
+LaTeX Template für Wissenschaftliche Arbeiten an der FHDW Mettmann.
+
+Dieses Template definiert keine Formalien in irgendeiner Art.
+Die aktuellen Formalien sind im Intranet zu finden und diese gilt es einzuhalten!
+
+Sollte dieses Template veraltet sein, gerne einen Pull Request einreichen.
 
 # Licence
 
