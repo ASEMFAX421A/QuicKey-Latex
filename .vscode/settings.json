@@ -8,10 +8,7 @@
                 "biber",
                 "makeindex",
                 "makeglossaries",
-                "pdflatex",
-                "biber",
-                "makeindex",
-                "makeglossaries"
+                "pdflatex"
             ]
         }
     ],
