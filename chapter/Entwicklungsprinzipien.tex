@@ -1,3 +1,9 @@
-% !TeX root = ../Thesis.tex
+%!TeX root = ../Thesis.tex
 
 \section{Entwicklungsprinzipien}
+
+\subsection*{Nicolas Groß}
+
+Modularisierung ist die Unterteilung eines Systems in kleinere Module. Die Modularisierung bietet Eigenschaften, welche bei der Entwicklung und Wartung von Software, Vorteile einbringen.  Zu diesen Vorteilen zählen Verständlichkeit, Kombinierbarkeit, Lokalität und die parallele Entwicklung. Die Verständlichkeit einer Software wird durch die Modularisierung verbessert, da einzelne Bestandteile weitgehend unabhängig von anderen Bestandteilen gekapselt und verständlich sind. Die einzelnen Module einer Software können auf unterschiedliche Arten miteinander kombiniert werden, um neue Systeme zusammenzufügen. Dies bietet den Vorteil das Module idealerweise unabhängig vom restlichen System funktionieren und wiederverwendet werden können. Durch die Lokalität zeichnet sich aus, dass Änderungen an einzelnen Modulen keine größeren Änderungen im Gesamtsystem zufolge haben. Ein entscheidender Vorteil für die Entwicklung im Team ist die Möglichkeit zur parallelen Entwicklung. Hierbei können einzelne Teammitglieder an unterschiedlichen Modulen arbeiten, ohne mit den Entwicklungen der anderen Mitglieder zu kollidieren. Das System wird dann zu einem späteren Zeitpunkt zusammengesetzt.\footcite[.vgl]{Schmidauer2002}
+
+Durch Angular ist eine hohe Modularisierung bereits von Beginn des Projekts gegeben, da die Angular-CLI Komponenten und Services in einzelnen Dateien erzeugen. Auch die Projektstruktur wird von der Angular-CLI angepasst, um Komponenten und Services anzulegen. Die einzelnen Komponenten können durch die Verwendung von Variablen wiederverwendbar gestaltet werden, um diese beliebig zu kombinieren. Die Änderungen an einer Komponente haben hierbei in der Regel keinen Einfluss auf andere Komponenten oder Services, wodurch Änderungen meist leicht umgesetzt werden können und dennoch Projektweit geltend sind.

@@ -1,3 +1,24 @@
 % !TeX root = ../Thesis.tex
 
 \section{Entwurfsmuster}
+
+\subsection*{Nicolas Groß}
+
+Bei Anwendungen wie in unserem Fall, einer Single-Page-Application (SPA), werden alle Teile auf einmal geladen, um dem Nutzer ein möglichst flüssiges Erlebnis zu bieten. Dadurch werden häufig auch unbenutzte Module der Anwendung geladen. Bei kleineren Projekten stellt dies keine Probleme da, allerdings kann es bei größeren Projekten zu langen Ladezeiten führen. Um dem entgegenzuwirken, bietet sich Lazy Loading. Beim Lazy Loading werden Inhalte einer Anwendung erst geladen, sobald sie benötigt werden. Dadurch werden Wartezeiten beim Start der Anwendung verkürzt.
+In Angular haben Module die Möglichkeit via Lazy Loading geladen zu werden. Durch den entsprechenden Code im Routing-Module wird das Lazy Loading auf die Module angewendet.
+
+\begin{figure}[bht]
+\begin{lstlisting}[caption=Codeausschnitt des Tabs Routingmodule,language=json]
+{
+  path: 'home',
+  loadChildren: () => import('../tab1/tab1.module').then(m => Tab1PageModule),
+  data: { title: 'Home', icon: 'home'}
+}
+\end{lstlisting}
+%\footnoterule{}
+%\footnotesize{Casts have been omitted for the sake of readability}
+\end{figure}
+
+Wie in diesem Codeausschnitt zu sehen, wird das Modul erst beim Aufruf der Route importiert und geladen. Somit wurde Lazy Loading in Angular-Routing implementiert.\footcites[.vgl]{LazyLoading2021}
+
+Neben dem Routing bedienen wir uns noch zwei weiter Male den Lazy Loading. Der von Ionic bereitgestellte HTML-Tag „<ion-img>“, welche zum Anzeigen Bildern verwendet wird, lädt Bilder standardmäßig über Lazy Loading. Den deutlichsten unterschied der Ladezeiten weist allerdings die InfinityScroll der „Search“-Seite auf. Bei einer Suche werden die Einträge paketweise der Liste hinzugefügt. Weiter Einträge werden erst der Liste erst hinzugeladen, sobald der Nutzer bis kurz vorm unteren Ende der Liste scrollte.\footcites[.vgl]{Ionic2013b}
