@@ -8,21 +8,31 @@
 \newcommand{\abgabedatum}{\today} 
 \newcommand{\ort}{Mettmann} 
 \newcommand{\koorperationsunternehmen}{Unternehmen GmbH}
-\newcommand{\dokumententitel}{A}
-\newcommand{\dokumentenautor}{Niklas Hardes, Nicolas Groß, Robert Hesselmann}
-\newcommand{\dokumentenautoradress}{A}
-\newcommand{\dokumentenpruefer}{A}
+\newcommand{\dokumententitel}{Entwicklung eines Softwareprojektes}
+\newcommand{\dokumentensubtitel}{Spiele Lizenzschlüssel Preisvergleich}
+\newcommand{\dokumentenautorA}{Niklas Hardes}
+\newcommand{\dokumentenautorB}{Nicolas Groß}
+\newcommand{\dokumentenautorC}{Robert Hesselmann}
+\newcommand{\dokumentenautoradressA}{A}
+\newcommand{\dokumentenautoradressAB}{A}
+\newcommand{\dokumentenautoradressB}{Winkelstraße 66}
+\newcommand{\dokumentenautoradressBB}{45966 Gladbeck}
+\newcommand{\dokumentenautoradressC}{Kronprinzenstraße 83}
+\newcommand{\dokumentenautoradressCB}{40217 Düsseldorf}
+\newcommand{\dokumentenpruefer}{Dr. Thomas Ströder}
 \newcommand{\studiengang}{Angewandte Informatik}
 \newcommand{\spezialisierungsbereich}{A}
-\newcommand{\matnummer}{000000,000000,101672}
+\newcommand{\matnummerA}{000000}
+\newcommand{\matnummerB}{101669}
+\newcommand{\matnummerC}{101672}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \hypersetup{
   colorlinks=false,
   pdfborder={0 0 0},
-  pdftitle=\dokumententitel,
-  pdfauthor=\dokumentenautor
+  pdftitle=\dokumententitel~\dokumentensubtitel,
+  pdfauthor=\dokumentenautorA\,\dokumentenautorB\,\dokumentenautorC
 } 
 
 \begin{document}
@@ -95,7 +105,20 @@
 
 \include{chapter/UserStoryUseCase}
 
-\include{chapter/Grundlagen}
+\include{chapter/Technologieauswahlentscheidungen}
+
+\include{chapter/Entwicklungsprinzipien}
+
+\include{chapter/SichtenGesamtsystem}
+
+\include{chapter/Entwurfsmuster}
+
+\include{chapter/Architekturstile}
+
+\include{chapter/Gegenüberstellungen}
+
+
+% \include{chapter/Grundlagen}
 
 \include{chapter/Zusammenfassung}
 	

@@ -2,7 +2,7 @@
     "latex-workshop.latex.recipe.default": "first",
     "latex-workshop.latex.recipes": [
         {
-            "name": "pdflatex ➞ biber ➞ makeindex ➞makeglosseries ➞ pdflatex × 2",
+            "name": "pdflatex ➞ biber ➞ makeindex ➞makeglosseries ➞ pdflatex × 2",
             "tools": [
                 "pdflatex",
                 "biber",
