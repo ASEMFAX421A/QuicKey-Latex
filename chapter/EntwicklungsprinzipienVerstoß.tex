@@ -45,12 +45,12 @@ Dies hat den Grund da Angular mit Data-Binding arbeitet.
 
 \begin{figure}[bht]
 \begin{lstlisting}[caption=Codeausschnitt der SearchBar,language=json]
-<ion-searchbar #searchbar show-clear-button="always" [debounce]="500" (ionChange)="this.searchGame($event)"></ion-searchbar>
+<ion-searchbar #searchbar show-clear-button="always" [debounce]="500" (ionChange)="this.searchGame(\$event)"></ion-searchbar>
 <div ngIf="games">
   <ng-containerngFor="let game of games">
     <app-game-card  [game]="game"></app-game-card>
   </ng-container>
-  <ion-infinite-scroll *ngIf="chunk<chunkCount" threshold="1000px" (ionInfinite)="loadChunk($event)">
+%   <ion-infinite-scroll *ngIf="chunk<chunkCount" threshold="1000px" (ionInfinite)="loadChunk($event)">
     <ion-infinite-scroll-content></ion-infinite-scroll-content>
   </ion-infinite-scroll>
 </div>
