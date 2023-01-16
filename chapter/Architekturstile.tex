@@ -1,3 +1,13 @@
 % !TeX root = ../Thesis.tex
 
 \section{Architekturstile}
+
+\subsection*{Master-Slave-Architektur / Client-Server-Architektur (Niklas Hardes)}
+
+Bei dem Abfragen von Spiele-Händlern ergab sich das Problem, dass diese Limitierungen eingebaut haben, wonach die Anfragen pro IP-Adresse eingeschränkt sich. Dafür hatten wir 2 Lösungen. Die Erste wäre die Geschwindigkeit stark zu reduzieren, was allerdings dennoch schnell zu einem Ban führen würde, da das Abfragen dennoch überwacht wird und ein Sequenzielles Abfragen sehr auffällig ist.
+Die 2. Option ist es die Anzahl an IP-Adressen zu erhöhen und dann wie sehr viele Nutzer auszusehen.
+
+Diese 2. Option wurde dann gewählt. Dazu baut der Worker eine WebSocket Verbindung mit einem Vermittlungsserver auf. Dieser Server nimmt die Anfragen entgegen, leitet sie an hunderte Slaves weiter, welche diese Anfrage durchführen und dann die Antwort an den Vermittlungsserver zurückgeben.
+Dieser gibt die Antworten dann über das WebSocket an den Worker zurück, wo dann diese verarbeitet und in die Datenbank eingepflegt werden.
+
+Einerseits stellt dies eine Client-Serververbindung dar zwischen unserem Worker und dem Vermittlungsserver. Andererseits eine Master-Slave-Architektur, da die Anfragen auf viele kleine Slaves verteilt werden. Im Allgemeinen gibt es in dieser einen Master, der die Kontrolle über eine Gruppe von Slaves hat. Der Master ist dafür verantwortlich, die Anfragen der Slaves zu verwalten und sicherzustellen, dass die Slaves die Anforderungen erfüllen. Dies passiert in unserem Fall noch mit einer Zwischenstelle.

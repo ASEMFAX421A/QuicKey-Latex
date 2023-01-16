@@ -1,0 +1,15 @@
+%!TeX root = ../Thesis.tex
+
+\section{Entwicklungsprinzipien-Verstöße}
+
+\subsection*{Open-Closed Prinzip (Niklas Hardes)}
+
+Das Open-Closed-Prinzip ist ein Prinzip der Softwareentwicklung, das besagt, dass ein Modul oder eine Klasse geöffnet sein sollte für Erweiterungen, aber geschlossen für Änderungen. Dies bedeutet, dass neue Funktionalitäten hinzugefügt werden können, ohne bestehenden Code zu ändern.
+
+Ein wichtiger Aspekt des Open-Closed-Prinzips ist die Verwendung von Abstraktionen. Durch die Verwendung von Abstraktionen können neue Funktionalitäten implementiert werden, ohne die bestehenden Klassen oder Module zu ändern.
+
+Das Open-Closed-Prinzip ist Teil der SOLID-Prinzipien, einer Sammlung von fünf Prinzipien der objektorientierten Softwareentwicklung, die entwickelt wurden, um Code wartbar und erweiterbar zu machen. Es ist ein grundlegendes Konzept in der objektorientierten Programmierung und hat großen Einfluss auf die Architektur und das Design von Software-Systemen.
+
+Es ist wichtig zu beachten, dass das Open-Closed-Prinzip nicht immer einfach umzusetzen ist und dass es in manchen Fällen notwendig sein kann, bestehenden Code zu ändern, um neue Anforderungen zu erfüllen.
+
+In unserem Projekt haben wir gegen dieses Prinzip absichtlich verstoßen. In dem Wrapper für die MongoDB haben wir neben höheren Funktionen für z.B. GetFirst und GetAll auch einen direkten Zugang zum Objekt der MongoDB Lib Public gemacht, wodurch ein direkter Zugang ermöglicht wird. Das hat die Entwicklung deutlich erleichtert, bringt aber den Nachteil eines nicht verwalteten Zugriffs ohne Beschränkungen.

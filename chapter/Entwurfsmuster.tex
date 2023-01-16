@@ -22,3 +22,40 @@ In Angular haben Module die Möglichkeit via Lazy Loading geladen zu werden. Dur
 Wie in diesem Codeausschnitt zu sehen, wird das Modul erst beim Aufruf der Route importiert und geladen. Somit wurde Lazy Loading in Angular-Routing implementiert.\footcites[.vgl]{LazyLoading2021}
 
 Neben dem Routing bedienen wir uns noch zwei weiter Male den Lazy Loading. Der von Ionic bereitgestellte HTML-Tag „<ion-img>“, welche zum Anzeigen Bildern verwendet wird, lädt Bilder standardmäßig über Lazy Loading. Den deutlichsten unterschied der Ladezeiten weist allerdings die InfinityScroll der „Search“-Seite auf. Bei einer Suche werden die Einträge paketweise der Liste hinzugefügt. Weiter Einträge werden erst der Liste erst hinzugeladen, sobald der Nutzer bis kurz vorm unteren Ende der Liste scrollte.\footcites[.vgl]{Ionic2013b}
+
+\subsection*{Fluent-Interfaces (Niklas Hardes)}
+
+In der Softwareentwicklung sind Fluent-Interfaces ein Entwurfsmuster, das darauf abzielt, den Code lesbarer und verständlicher zu machen, indem es die Verkettung von Methoden ermöglicht. Sie sind besonders nützlich für die Erstellung von komplexen und hierarchischen Objekten.
+
+In unserem Projekt haben wir für das Backend die Sprache C\# gewählt. In dieser Sprache werden diese Ketten dadurch ermöglicht, dass Methoden das eigene Objekt zurückgeben, wodurch weitere Methoden direkt hintereinander aufgerufen werden können.
+
+Wir haben dieses Muster unteranderem benutzt, um HTTP Anfragen auf einfache Art konstruieren zu können.
+Dazu haben wir die Klasse CustomHttpRequest angelegt, welche dann Methoden wie die SetHeader besitzt.
+
+\begin{figure}[bht]
+\begin{lstlisting}[caption=Codeausschnitt von CustomHttpRequest (1),language=json]
+public CustomHttpRequest SetHeader(string key, string value)
+{
+    this._headers ??= new Dictionary<string, string>();
+    this._headers[key] = value;
+    return this;
+}
+\end{lstlisting}
+%\footnoterule{}
+%\footnotesize{Casts have been omitted for the sake of readability}
+\end{figure}
+
+Diese Methode konfiguriert bzw. modifiziert die Header des Requests und gibt sich selber zurück, wodurch weitere Methoden aufgerufen werden können. Ein vollständiger Aufruf könnte dann wie folgt aussehen.
+
+\begin{figure}[bht]
+\begin{lstlisting}[caption=Codeausschnitt von CustomHttpRequest (2),language=json]
+_requester.BuildRequest(HttpMethod.Get, "https://api.steampowered.com/ISteamApps/GetAppList/v2/")
+            .SetHeader("User-Agent", "QuicKey Worker")
+            .SetCookie("testCookie", "testValue")
+            .Request()
+\end{lstlisting}
+%\footnoterule{}
+%\footnotesize{Casts have been omitted for the sake of readability}
+\end{figure}
+
+In dem Konstruktor bzw. der Factory Methode werden die benötigten Attribute wie die Methode und die Uri, welche zwingend benötigt werden direkt übergeben. Diese Methode gibt dann ein Objekt der Klasse CustomHttpRequest zurück. Bei diesem Objekt wird dann mithilfe eines Fluent-Interfaces ein exemplarischer Header und Cookie gesetzt. Am Ende wird dann die Request Methode aufgerufen, wodurch die Kette abgeschlossen, die Anfrage gestellt und das Ergebnis der Anfrage zurückgegeben wird. Dies ist dann kein CustomHttpRequest mehr, sondern eine HttpResponseMessage.
