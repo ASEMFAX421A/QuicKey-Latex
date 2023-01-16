@@ -2,6 +2,66 @@
 
 \section{Entwicklungsprinzipien-Verstöße}
 
+\subsection*{Verstoß gegen ein Entwicklungsprinzip (Nicolas Groß)}
+
+Immutability ist ein Entwicklungsprinzip, gegen das im Frontend des Projektes verstoßen wird. Die Idee hinter Immutability ist, dass ein Objekt nach der Erstellung nicht mehr bearbeitet wird. Dies hilf die Korruption von Inhalten zu verhindern und Bugs vorzubeugen.
+Allerdings muss eine Variable der SearchPageComponent beim Laden der Spiele häufig verändert werden. 
+\begin{figure}[bht]
+\begin{lstlisting}[caption=Codeausschnitt der SearchPageComponent,language=json]
+export class SearchPageComponent implements AfterViewInit {
+
+  ...
+
+  public games: GameModel[];
+
+  ...
+
+  public searchGame(event){
+    this.query = event;
+    const response = this.gs.searchGame(event, 0);
+    response.subscribe(resp => {
+      this.chunk = resp.chunk;
+      this.chunkCount = resp.chunkCount;
+      this.games = resp.games;
+    });
+  }
+
+  public async loadChunk(event: InfiniteScrollCustomEvent) {
+    if (this.chunk < this.chunkCount) {
+      const resp = await this.gs.searchGame(this.query, this.chunk +1).toPromise();
+      this.chunk++;
+      this.games = this.games.concat(resp.games);
+      await event.target.complete();
+    }
+  }
+}
+\end{lstlisting}
+%\footnoterule{}
+%\footnotesize{Casts have been omitted for the sake of readability}
+\end{figure}
+
+Wie hier zusehen ist wird das Array "games" des Datentypen GameModel durch die Methoden searchGame(...) und loadChunk(...) manipuliert.
+Dies hat den Grund da Angular mit Data-Binding arbeitet.
+
+\begin{figure}[bht]
+\begin{lstlisting}[caption=Codeausschnitt der SearchBar,language=json]
+<ion-searchbar #searchbar show-clear-button="always" [debounce]="500" (ionChange)="this.searchGame($event)"></ion-searchbar>
+<div ngIf="games">
+  <ng-containerngFor="let game of games">
+    <app-game-card  [game]="game"></app-game-card>
+  </ng-container>
+  <ion-infinite-scroll *ngIf="chunk<chunkCount" threshold="1000px" (ionInfinite)="loadChunk($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</div>
+\end{lstlisting}
+%\footnoterule{}
+%\footnotesize{Casts have been omitted for the sake of readability}
+\end{figure}
+
+Hier im Template der Komponente sieht man, dass sich die Spieleliste anhand des Arrays „games“ erzeugt.
+Da die Spieleliste aus Latenzgründen in Chunks geladen wird, muss das Array, solange der Nutzers weiterscrollt, ergänzt werden, es sei denn es sind keine weiteren Chunks verfügbar.
+
 \subsection*{Open-Closed Prinzip (Niklas Hardes)}
 
 Das Open-Closed-Prinzip ist ein Prinzip der Softwareentwicklung, das besagt, dass ein Modul oder eine Klasse geöffnet sein sollte für Erweiterungen, aber geschlossen für Änderungen. Dies bedeutet, dass neue Funktionalitäten hinzugefügt werden können, ohne bestehenden Code zu ändern.

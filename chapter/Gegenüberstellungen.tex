@@ -1,4 +1,64 @@
 % !TeX root = ../Thesis.tex
+\section{Gegenüberstellungen}
+
+\subsection*{Dokumentation vs. Clean Code (Nicolas Groß)}
+
+\subsubsection*{Dokumentation}
+Dokumentation kann auf unterschiedliche Arten erfolgen, dabei unterscheidet man zwischen Dokumentation für den internen und externen Gebrauch. Die Dokumentation für den internen Gebrauch kann im einfachsten Fall aus Kommentaren im Quellcode bestehen. Für ausführlichere Projektdokumentation eignet sich das Anlegen einer zusätzlichen Datei. Für diesen Fall enthalten viele Projekte bereits von Beginn an eine README-Datei. Dokumentationen für externen Gebrauch sind für die Weitergabe an Kunden gedacht. Hierzu zählen zum Beispiel Benutzerhandbücher und Schnittstellendokumentation. Das Ziel der Softwaredokumentation ist es die entsprechende Zielgruppe über Punkte wie Entwicklungsgrundlagen, Funktionen, Voraussetzungen der Inbetriebnahme, Schnittstellen, Konfiguration und/oder Bedienung zu informieren. Neben Fließtexten können Dokumentationen auch Codeausschnitte und Beispiele enthalten und Gebrauch von Hilfsmitteln wie zum Beispiel Suchfunktionen und Hyperlinks machen.\footcite[.vgl]{DokuCode}\footcite[.vgl]{SoftwareDoku}\footcite[.vgl]{SoftwareDokub}
+
+\subsubsection*{Clean Code}
+Häufig kann Code komplexe, verschachtelte Strukturen aufweisen und die Lesbarkeit und Verständlichkeit erschweren. Dadurch können Fehler bei Änderungen und Erweiterungen auftreten. Deshalb gibt es das Konzept von Clean Code. Clean Code bezeichnet den Gedanken den Code einer Software klar, verständlich, nachvollziehbar und logisch zu implementieren. Der Code soll sowohl effizient und effektiv als auch lesbar, änderbar, erweiterbar und wartbar gestaltet sein. Bei der Implementierung von Clean Code gibt es einige Werte, Prinzipien und Praktiken, auf die geachtet werden sollte.
+Werte wie Wandelbarkeit, Korrektheit, Produktionseffizienz und Kontinuierliche Verbesserung sollen helfen den Code "sauberer zu gestalten".
+
+\glqq Damit Änderungen möglich sind, muss die Software eine innere Struktur haben, die solche Änderungen begünstigt.\grqq\footcite{CleanCode}  Das sagt die Wandelbarkeit der Clean Code Werte aus. Software wird mit der Zeit häufig angepasst und erweitert, sodass nach einiget Zeit kaum noch ein Entwickler den vollen Durchblick hat. Deshalb sollten Entwickler direkt ab Beginn des Projektes auf die Strukturierung und Untererteilung ihrer Dateien achten.
+Mit der Korrektheit wird beschrieben, dass die Entwickler selbst für die richtigen Ausgaben ihres Codes verantwortlich seien, sollten und sich nicht auf Debugger und Tester verlassen sollten.
+
+Ineffiziente Programmierung ist teurer, das sagt Produkteffizienz bei Clean Code aus. Der Gedanke dieses Wertes ist es, automatisierbare Tätigkeiten auch zu automatisieren. Durch die Automatisierung wird die Fehleranfälligkeit verringert und zusätzlich werden andere Werte wie Wandelbarkeit unterstützt.
+Kontinuierliche Verbesserung betrifft den Entwickler und weniger den Code. Entwickler sollen ihre Vorgehensweisen anhand ihrer Problemlösungen reflektieren und neue Erkenntnisse in ihre Vorgehensweisen aufnehmen. 
+Um Code "sauberer" zu entwickeln, wurden einige Prinzipien festgelegt, an die man sich halten sollte. Hier drei Beispiele:\footcite[.vgl]{CleanCodeb}\footcite[.vgl]{CleanCodec}
+
+-    Don't Repeat Yourself \\
+-    Keep It Simple and Stupid \\
+-    Single Responsibility Principle
+
+\subsubsection*{Vergleich}
+
+\begin{table}[hbt]
+\centering
+\begin{minipage}[t]{1\textwidth} % Breite, z.B. 1\textwidth		
+\caption{Gegenüberstellungen Dokumentation/Clean Code} % Überschrift
+\begin{tabularx}{\columnwidth}{rXl}
+\toprule
+Dokumentation && Clean Code\\
+\midrule
+\textbf{Vorteile:} \\
+Schneller Zugriff auf Informationen && Leicht lesbar\\
+Übersichtlich && Selbsterklärend\\
+Auch für Laien/Kunden geeignet && Kein unnötiger Code\\
+Ausführlich && Prinzipien zum erleichterten Umsetzen\\
+Beispiele && Code leichter anpassbar/erweiterbar\\
+Mehrere Medien && \\
+\midrule
+\textbf{Nachteile:} \\
+Aufwendig zu erstellen && Einarbeitung in Prinzipien\\
+Muss bei Änderungen angepasst werden && Nicht zur Weitergabe an Kunden geeignet\\
+Code kann komplex/unverständlich sein && \\
+\bottomrule
+\end{tabularx}
+\source{Eigene Darstellung} % Quelle
+\end{minipage}
+\end{table}
+
+\subsubsection*{Vor- und Nachteile von Dokumentation/Clean Code}
+
+Wie in der Tabelle zu sehen ist haben beide Seiten Vor- und Nachteile, weshalb man nicht aussagen kann das eines besser ist als das andere. Eine ideale Umsetzung würde aus einer Kombination Beider bestehen. Durch Clean Code optimiert man den Programmcode, indem man zum Beispiel die Wandelbarkeit durch Prinzipien wie DRY und KISS verbessert. Somit werden die Verständlichkeit und Lesbarkeit des Codes für andere Entwickler und sich selbst verbessert. Durch Automatisierungen erleichtern man sich Arbeit und senkt die Fehleranfälligkeit des Codes. 
+
+Die Dokumentation wird zusätzlich verwendet, um Schnittstellen und Umgebungsvariablen aufzulisten und deren Verwendung zu erklären. Dadurch wird die Einbindung und Nutzung der Software erleichtert. Kunden benötigen weiterhin eine detailliertere Ausführung bezüglich Verwendungszwecks, Bedienung, etc., weshalb hier nicht auf eine Dokumentation verzichtet werden kann.
+
+Clean Code spart dem Entwickler Zeit und Aufwand, da die Verbesserungen die Menge an zu dokumentierendem Programmcode reduziert. 
+
+
+
 
 \subsection*{Harmonisierung vs. Abstraktion (Niklas Hardes)}
 
@@ -9,3 +69,9 @@ Harmonisierung bezieht sich auf die Anpassung von Daten oder Prozessen, um sie k
 Abstraktion hingegen bezieht sich auf die Verringerung der Komplexität von etwas, indem man nur die wesentlichen Eigenschaften behält und die unbedeutenden Details ignoriert. Das Ziel der Abstraktion ist es, ein Problem oder eine Aufgabe in kleinere, einfachere Teile zu zerlegen, um es leichter zu verstehen und zu lösen.
 
 Kurz gesagt, Harmonisierung sorgt dafür, dass Daten und Prozesse miteinander kompatibel sind, während Abstraktion dafür sorgt, dass Probleme und Aufgaben leichter verstanden und gelöst werden können.
+
+
+
+\subsection*{Refactoring vs. Featuredruck (Robert Hesselmann)}
+
+Featuredruck vs. Refactoring, warum kann man Refactoring nicht alleine machen? Für Refactoring braucht man Zeit, Zeit ist Geld. Geld was keiner Zahl, Features werden von Kunden bezahlt. Somit sind Features gut für das Projekt, aber wenn Features nicht gut oder nur halbherzig unter Zeitdruck entstanden sind, ist es Später nur schwer möglich mit dem Code weiter zuarbeiten. Deshalb ist es wichtig Refactoring bei der Entwicklung bei zu behalten, d.h. z.B. bei jedem PR (Pull-Request) sollte alle Coding-Standard geprüft werden, sowie ob die Anforderung für die Enderdung getroffen sind.

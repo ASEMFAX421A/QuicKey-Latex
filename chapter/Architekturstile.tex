@@ -2,6 +2,52 @@
 
 \section{Architekturstile}
 
+\subsection*{Model-View-ViewModel Architektur (Nicolas Groß)}
+
+Die Model-View-ViewModel Architektur (MVVM) ist ein Konzept der Softwarearchitektur und ist eine Variation der Model-View-Controller Architektur (MVC). Diese Architektur unterscheidet zwischen Model, der View und dem ViewModel.
+
+Das Model enthält die Struktur der Daten und dient zur Erhaltung und Validierung der dem Nutzer anzuzeigenden und von ihm manipulierten Daten. Ein weiterer Nutzen des Models ist die Bereitstellung weiterzuleitender Daten zum Speichern in einer Datenbank. Das Model enthält keine Prozesslogik, sondern ausschließlich die Datenstruktur der Daten. Das Model ist nach einem objektorientierten Prinzip angelegt und kann zum Beispiel wie folgt aufgebaut sein:
+
+\begin{figure}[bht]
+\begin{lstlisting}[caption=Codeausschnitt des GameModel Interfaces,language=json]
+export interface GameModel{
+  refLink: string;
+  timestamp: string;
+  name: string;
+  price: number;
+  priceUnit: string;
+  imageLink: string;
+  storePlatform: string;
+}
+\end{lstlisting}
+%\footnoterule{}
+%\footnotesize{Casts have been omitted for the sake of readability}
+\end{figure}
+
+Hier ist das im Projekt verwendete GameModel definiert, welches zum Laden und Anzeigen der Spiele aus der Datenbank verwendet wird.
+
+Als View bezeichnet man die Benutzeroberfläche, mit welcher der Nutzer interagiert. Diese bestehen im Fall von Angular aus Templates. Diese Templates werden durch HTML und CSS strukturiert und gestaltet. Zudem enthalten sie Variablen, welche sich an die Daten des ViewModel binden, um diese anzuzeigen.
+
+Das ViewModel enthält die Logik der UI-Komponenten. Das ViewModel greift auf Methoden und Dienst des Models zu und stellt zudem auch benötigte Informationen, Eigenschaften und Methoden zur Verwendung in der View bereit.
+
+Angular folgt dem Prinzip der MVVM-Architektur. Komponenten in Angular bestehen immer aus zwei Teilen, dem Template und der Logik. Komponenten zeichnen sich durch ein „@Component“ im ViewModel aus. Das sieht zum Beispiel wie folgt aus:
+
+\begin{figure}[bht]
+\begin{lstlisting}[caption=Codeausschnitt der SearchPageComponent,language=json]
+@Component({
+  selector: 'app-search-page',
+  templateUrl: './search-page.component.html',
+  styleUrls: ['./search-page.component.scss'],
+})
+export class SearchPageComponent implements AfterViewInit {...}
+\end{lstlisting}
+%\footnoterule{}
+%\footnotesize{Casts have been omitted for the sake of readability}
+\end{figure}
+
+Hier werden ein Tag der Komponente („selector“) zum Aufruf in Templates, der Pfad zur Template-Datei („templateUrl“) und der Pfad zu einer zusätzlichen Style-Datei („styleUrls“) angegeben. Durch diese Angaben werden View und ViewModel miteinander verknüpft.
+
+
 \subsection*{Master-Slave-Architektur / Client-Server-Architektur (Niklas Hardes)}
 
 Bei dem Abfragen von Spiele-Händlern ergab sich das Problem, dass diese Limitierungen eingebaut haben, wonach die Anfragen pro IP-Adresse eingeschränkt sich. Dafür hatten wir 2 Lösungen. Die Erste wäre die Geschwindigkeit stark zu reduzieren, was allerdings dennoch schnell zu einem Ban führen würde, da das Abfragen dennoch überwacht wird und ein Sequenzielles Abfragen sehr auffällig ist.
@@ -11,3 +57,14 @@ Diese 2. Option wurde dann gewählt. Dazu baut der Worker eine WebSocket Verbind
 Dieser gibt die Antworten dann über das WebSocket an den Worker zurück, wo dann diese verarbeitet und in die Datenbank eingepflegt werden.
 
 Einerseits stellt dies eine Client-Serververbindung dar zwischen unserem Worker und dem Vermittlungsserver. Andererseits eine Master-Slave-Architektur, da die Anfragen auf viele kleine Slaves verteilt werden. Im Allgemeinen gibt es in dieser einen Master, der die Kontrolle über eine Gruppe von Slaves hat. Der Master ist dafür verantwortlich, die Anfragen der Slaves zu verwalten und sicherzustellen, dass die Slaves die Anforderungen erfüllen. Dies passiert in unserem Fall noch mit einer Zwischenstelle.
+
+
+\subsection*{Schichtenarchitektur (Robert Hesselmann)}
+
+Unsere Software haben wir mit Hilfe der Schichtenarchitektur gestaltet. Die Software ist geteilt in die Datenschicht, die Businessschicht und die Zugriffsschicht.
+
+Die Datenschicht repräsentiert mit Hilfe von Entities die Datenbank, die Datenbank bekommt nur Anfragen über die Datenschicht.
+
+Die Businessschicht oder auch Businesslogik genannt, beinhaltet alle Logischen Operationen mit den Daten und der Verarbeitung der Daten.
+
+Die Zugriffsschicht gibt die Daten nach Außen weiter, bspw. mit einer \gls{http}-Schnittstelle.

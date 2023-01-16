@@ -2,7 +2,7 @@
 
 \section{Entwicklungsprinzipien}
 
-\subsection*{Nicolas Groß}
+\subsection*{Modularisierung (Nicolas Groß)}
 
 Modularisierung ist die Unterteilung eines Systems in kleinere Module. Die Modularisierung bietet Eigenschaften, welche bei der Entwicklung und Wartung von Software, Vorteile einbringen.  Zu diesen Vorteilen zählen Verständlichkeit, Kombinierbarkeit, Lokalität und die parallele Entwicklung. Die Verständlichkeit einer Software wird durch die Modularisierung verbessert, da einzelne Bestandteile weitgehend unabhängig von anderen Bestandteilen gekapselt und verständlich sind. Die einzelnen Module einer Software können auf unterschiedliche Arten miteinander kombiniert werden, um neue Systeme zusammenzufügen. Dies bietet den Vorteil das Module idealerweise unabhängig vom restlichen System funktionieren und wiederverwendet werden können. Durch die Lokalität zeichnet sich aus, dass Änderungen an einzelnen Modulen keine größeren Änderungen im Gesamtsystem zufolge haben. Ein entscheidender Vorteil für die Entwicklung im Team ist die Möglichkeit zur parallelen Entwicklung. Hierbei können einzelne Teammitglieder an unterschiedlichen Modulen arbeiten, ohne mit den Entwicklungen der anderen Mitglieder zu kollidieren. Das System wird dann zu einem späteren Zeitpunkt zusammengesetzt.\footcite[.vgl]{Schmidauer2002}
 
@@ -20,3 +20,10 @@ Ebenfalls gibt es Auswirkungen auf Abhängigkeiten zwischen Klassen. Wenn eine K
 Zusammenfassend, unter Einhaltung des SRP sollte jede Klasse, Methode oder Funktion nur eine einzige Verantwortung haben. Dies erleichtert es, Änderungen an einer Klasse vorzunehmen, ohne Auswirkungen auf andere Teile des Systems zu haben, und die Abhängigkeiten zwischen Klassen zu minimieren.
 
 Das beste Beispiel liefert hierzu unsere Implementation des ThreadedWebSocket im Namespace QuicKey.Business.Web. Es besitzt eine geringe Anzahl an Abhängigkeiten, welche ebenfalls über Interfaces ausgetauscht werden können und somit gut testbar sind. Seine einzige Verantwortlichkeit liegt dabei, die Kommunikation über ein WebSocket zu ordnen, zu steuern und anderen Klassen zur Verfügung zu stellen.
+
+\subsection*{Benennung und Strukturierung (Robert Hesselmann)}
+
+Die Benennung und Strukturierung deines Software Systems ist ein großer Faktor der Verständlichkeit des Systems. Die Benennung einer Klasse kann nur so gut sein wie der Inhalt der Klasse. Somit müssen Klassen wie im Single-Responsibility Prinzip geteilt werden, sodass sie einen Eindeutigen Namen bekommen. Auch die Strukturierung eines Systems ist sehr Wichtig. Das Framework Symfony trägt eine sehr Starke Rolle der Coding-Standards. Hierbei werden z.B. alle Controller, der Glue-Code zwischen View und Model in einen Separaten Namespace eingeordnet, das gleiche gilt auch für Repository und Entities, uvm.\footcite[.vgl]{Symfony2005}
+
+
+
