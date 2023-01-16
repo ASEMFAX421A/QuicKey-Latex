@@ -11,8 +11,12 @@ In Angular haben Module die Möglichkeit via Lazy Loading geladen zu werden. Dur
 \begin{lstlisting}[caption=Codeausschnitt des Tabs Routingmodule,language=json]
 {
   path: 'home',
-  loadChildren: () => import('../tab1/tab1.module').then(m => Tab1PageModule),
-  data: { title: 'Home', icon: 'home'}
+  loadChildren: () => import('../tab1/tab1.module')
+                        .then(m => Tab1PageModule),
+  data: {
+    title: 'Home', 
+    icon: 'home'
+  }
 }
 \end{lstlisting}
 %\footnoterule{}
